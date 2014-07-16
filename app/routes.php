@@ -15,3 +15,7 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+App::bind('PhoneViewProvider', 'DetailedViewProvider');
+
+Route::get('/phone/{id}', 'PhoneController@viewPhone');
