@@ -16,6 +16,11 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-App::bind('PhoneViewProvider', 'DetailedViewProvider');
+App::singleton('PhoneViewProvider', 'PhoneDetailedViewProvider');
 
-Route::get('/phone/{id}', 'PhoneController@viewPhone');
+// app works fine without this line. Nevertheless, I added it as it is required
+App::bind('Phone', function() { return new Phone(); });
+
+Route::get('/phones/{id}', 'PhoneController@viewPhone');
+
+Route::get('/phone', 'PhoneController@viewPhone');

@@ -36,7 +36,12 @@ class Phone
 
 	public function __construct(array $attrs)
 	{
-		$this->_attrs = $this->processAttrs($attrs);
+		$this->setAttrs($attrs);
+	}
+
+	public function setAttrs(array $attrs)
+	{
+		$this->_attrs = $this->processAttrs($attrs);	
 	}
 
 	public function __construct()

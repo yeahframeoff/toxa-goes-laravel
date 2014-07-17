@@ -19,9 +19,20 @@ class PhoneController extends BaseController {
 	{
 		if (empty($id))
 			return View::make('empty');
-		$pageTitle = Route::currentRouteName();
 		$content = App::make('PhoneViewProvider')->make($id);
-		return View::make('phone', ['content' => $content, 'pageTitle' => $pageTitle]);
+		return $this->render($content);
 	}
 
+	public function viewDefaultPhone($id = null)
+	{
+		$phone = App::make('Phone');
+		$content = App::make('PhoneViewProvider')->make($phone);
+		return $this->render($content);
+	}
+
+	private function render($content)
+	{
+		$pageTitle = Route::currentRouteName();
+		return View::make('phone', ['content' => $content, 'pageTitle' => $pageTitle]);
+	}
 }
