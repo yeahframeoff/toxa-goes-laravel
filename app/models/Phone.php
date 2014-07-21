@@ -13,7 +13,7 @@ class Phone
 	    'battery' => ['capacity'],
 	];
 
-	private static standardConfig()
+	private static function standardConfig()
 	{
 		return [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
@@ -34,9 +34,12 @@ class Phone
 		return isset($this->_attrs[$name]) ? $this->_attrs[$name] : null;
 	}
 
-	public function __construct(array $attrs)
+	public function __construct($attrs = null)
 	{
-		$this->setAttrs($attrs);
+		if (isset($attrs) && is_array($attrs))
+			$this->setAttrs($attrs);
+		else
+			$this->_attrs = $this->processAttrs( self::standardConfig() );
 	}
 
 	public function setAttrs(array $attrs)
@@ -44,13 +47,10 @@ class Phone
 		$this->_attrs = $this->processAttrs($attrs);	
 	}
 
-	public function __construct()
+	private function processAttrs($attrs, $required = null)
 	{
-		$this->_attrs = $this->processAttrs( self::standardConfig() );
-	}
-
-	private function processAttrs($attrs, $required = self::$requiredKeys)
-	{
+		if ($required === null)
+			$required = self::$requiredKeys;
 		$res = [];
 		foreach ($required as $key => $value) {
 			if (is_array($value))
@@ -59,7 +59,7 @@ class Phone
 				else
 				{
 					$empt = array_flip($value);
-					array_walk($empt, function(&$v) {&$v = '';});
+					array_walk($empt, function(&$v) {$v = '';});
 					$res[$key] = $empt;
 				}
 			            
@@ -67,5 +67,33 @@ class Phone
 				$res[$value] = isset($attrs[$value]) ? $attrs[$value] : '';
 		}
 		return $res;
+	}
+
+	public static function coreToString($core)
+	{
+		if (!is_integer($core))
+			return '';
+		switch ($core) {
+			case 1:
+				return 'Single-Core';
+				break;
+			case 2:
+				return 'Dual-Core';
+				break;
+			case 4:
+				return 'Quad-Core';
+				break;
+			case 8:
+				return 'Octa-Core';
+				break;
+			default:
+				return "$core-Core";
+				break;
+		}
+	}
+
+	public function cores()
+	{
+		return self::coreToString($this->cpu['cores']);
 	}
 }

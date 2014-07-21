@@ -13,7 +13,7 @@
 			color: #999;
 		}
 
-		.sorry {
+		.welcome {
 			width: 1024px;
 			height: 200px;
 			position: absolute;
@@ -42,7 +42,7 @@
 	</style>
 </head>
 <body>
-	<div class="sorry">
+	<div class="welcome">
 		<h1>Sorry, but we want you to specify the model of the phone.</h1>
 		<h1>Please, specify in url the id (0 to 5) of phone you want to watch</h1>
 		<h1>{{ $url }}/<a class="highlighted">right here</a></h1>

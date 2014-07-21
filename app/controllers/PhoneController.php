@@ -18,12 +18,12 @@ class PhoneController extends BaseController {
 	public function viewPhone($id = null)
 	{
 		if (empty($id))
-			return View::make('empty');
+			return View::make('empty', ['url' => Request::url()]);
 		$content = App::make('PhoneViewProvider')->make($id);
 		return $this->render($content);
 	}
 
-	public function viewDefaultPhone($id = null)
+	public function viewDefaultPhone()
 	{
 		$phone = App::make('Phone');
 		$content = App::make('PhoneViewProvider')->make($phone);

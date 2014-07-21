@@ -2,17 +2,20 @@
 
 abstract class PhoneViewProvider
 {
-	public function make($id)
+	public function make($arg)
 	{
-		$attrs = self::$someConfigs[$id % 6];
-		$phone = new Phone($attrs);
-		return $this->make($phone);
-	}
-
-	public function make(Phone $phone)
-	{
-		$viewFile = $this->viewFile();
-		return View::make($viewFile, ['phone' => $phone]);
+		if ($arg instanceof Phone)
+		{
+			$viewFile = $this->viewFile();
+			return View::make($viewFile, ['phone' => $arg]);
+		}
+		else
+		{
+			if (!is_integer($arg)) $arg = 0;
+			$attrs = self::$someConfigs[$arg % count(self::$someConfigs)];
+			$phone = new Phone($attrs);
+			return $this->make($phone);
+		}
 	}
 
     protected abstract function viewFile();
@@ -24,7 +27,7 @@ abstract class PhoneViewProvider
     //
     private static $someConfigs = 
     [
-        '0' => 
+        0 => 
         [
             'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
             'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -32,7 +35,7 @@ abstract class PhoneViewProvider
             'camera' => ['mpixels' => 8, 'optics' => 'Carl Zeiss'],
             'battery' => ['capacity' => 1234],
         ],
-        '1' => 
+        1 => 
 	    [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
 		    'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -40,7 +43,7 @@ abstract class PhoneViewProvider
 		    'camera' => ['mpixels' => 8, 'optics' => 'Carl Zeiss'],
 		    'battery' => ['capacity' => 1234],
 		],
-		'2' => 
+		2 => 
 	    [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
 		    'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -48,7 +51,7 @@ abstract class PhoneViewProvider
 		    'camera' => ['mpixels' => 8, 'optics' => 'Carl Zeiss'],
 		    'battery' => ['capacity' => 1234],
 		],
-		'3' => 
+		3 => 
 	    [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
 		    'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -56,7 +59,7 @@ abstract class PhoneViewProvider
 		    'camera' => ['mpixels' => 8, 'optics' => 'Carl Zeiss'],
 		    'battery' => ['capacity' => 1234],
 		],
-		'4' => 
+		4 => 
 	    [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
 		    'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -64,7 +67,7 @@ abstract class PhoneViewProvider
 		    'camera' => ['mpixels' => 8, 'optics' => 'Carl Zeiss'],
 		    'battery' => ['capacity' => 1234],
 		],
-		'5' => 
+		5 => 
 	    [
 		    'name' => ['vendor' => 'Sony', 'model' => 'Xperia Z2'],
 		    'cpu' => ['vendor' => 'Qualcomm', 'model' => '5555', 'cores' => 4, 'frequency' => 1],
@@ -73,15 +76,4 @@ abstract class PhoneViewProvider
 		    'battery' => ['capacity' => 1234],
 		],
 	];
-}
-
-class PhoneDetailedViewProvider extends PhoneViewProvider
-{
-	protected function viewFile() {return 'm_detailed';}
-}
-
-
-class PhoneTableViewProvider extends PhoneViewProvider
-{
-	protected function viewFile() {return 'm_table';}
 }

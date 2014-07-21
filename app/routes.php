@@ -10,6 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+/*
+*/
 
 Route::get('/', function()
 {
@@ -23,4 +25,4 @@ App::bind('Phone', function() { return new Phone(); });
 
 Route::get('/phones/{id}', 'PhoneController@viewPhone');
 
-Route::get('/phone', 'PhoneController@viewPhone');
+Route::get('/phone', 'PhoneController@viewDefaultPhone');
