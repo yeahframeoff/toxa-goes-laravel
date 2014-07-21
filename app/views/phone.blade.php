@@ -15,12 +15,12 @@
 
 		.info {
 			width: 1024px;
-			height: 200px;
+			height: 500px;
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			margin-left: -512px;
-			margin-top: -100px;
+			margin-top: -200px;
 		}
 
 		a, a:visited {

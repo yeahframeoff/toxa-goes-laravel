@@ -7,5 +7,19 @@
 	   $phone->cpu['frequency'].'GHz'
 	}}
 </h1>
-<!-- <h1>Please, specify in url the id (0 to 5) of phone you want to watch</h1>
-<h1>{{-- $url --}}/<a class="highlighted">right here</a></h1> -->
+<h1>Display:
+	{{
+		$phone->display['height'] . ' x '.
+		$phone->display['width'] . ' pixels, ' .
+		$phone->display['matrix']
+	}}
+</h1>
+<h1>Camera:
+	{{ $phone->camera['mpixels'] . ' Megapixels '. $phone->camera['optics'] }}
+</h1>
+<h1>
+	Battery:
+	{{
+		$phone->battery['capacity']. ' mAh'
+	}}
+</h1>
