@@ -39,6 +39,11 @@
 			/*font-variant:small-caps;*/
 
 		}
+
+		th, td
+		{
+			border: 2px solid #999;
+		}
 	</style>
 </head>
 <body>
