@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-        "hpatoio/bitly-api": "2.0.0"
+        "hpatoio/bitly-api": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
