@@ -13,7 +13,7 @@ class BatteryComponent extends ComponentBase {
         $this->_attrs = ['capacity' => 1234];
     }
 
-    public function componentName()
+    public function name()
     {
         return 'Battery';
     }

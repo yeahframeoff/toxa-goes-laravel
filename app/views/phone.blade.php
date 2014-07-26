@@ -47,6 +47,6 @@
 	</style>
 </head>
 <body>
-	<div class="info">{{ $content }}</div>
+	<div class="info">{{ $phoneView }}</div>
 </body>
 </html>

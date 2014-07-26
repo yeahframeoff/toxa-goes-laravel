@@ -16,7 +16,7 @@ class CameraComponent extends ComponentBase {
         ];
     }
 
-    public function componentName()
+    public function name()
     {
         return 'Camera';
     }

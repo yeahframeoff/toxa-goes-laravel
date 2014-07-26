@@ -11,13 +11,13 @@ class DisplayComponent extends ComponentBase {
     public function __construct()
     {
         $this->_attrs = [
-            'height' => 1280,
-            'width' => 720,
+            'height' => 1920,
+            'width' => 1280,
             'matrix' => 'IPS'
         ];
     }
 
-    public function componentName()
+    public function name()
     {
         return 'Display';
     }

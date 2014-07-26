@@ -18,7 +18,7 @@ class CpuComponent extends ComponentBase {
         ];
     }
 
-    public function componentName()
+    public function name()
     {
         return 'Processor';
     }

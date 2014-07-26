@@ -15,25 +15,20 @@ class PhoneController extends BaseController {
 	|
 	*/
 
-	public function viewPhone($id = null)
-	{
-		
-		if (empty($id))
-			return View::make('empty', ['url' => Request::url()]);
-		$content = App::make('PhoneViewProvider')->make($id);
-		return $this->render($content);
-	}
+//	public function viewPhone($id = null)
+//	{
+//
+//		if (empty($id))
+//			return View::make('empty', ['url' => Request::url()]);
+//		$content = App::make('PhoneViewProvider')->make($id);
+//		return $this->render($content);
+//	}
 
-	public function viewDefaultPhone()
+	public function phone()
 	{
 		$phone = App::make('Phone');
-		$content = App::make('PhoneViewProvider')->make($phone);
-		return $this->render($content);
-	}
-
-	private function render($content)
-	{
-		$pageTitle = Route::currentRouteName();
-		return View::make('phone', ['content' => $content, 'pageTitle' => $pageTitle]);
+        $phoneContentView = App::make('PhoneContentView');
+        $pageTitle = Route::currentRouteName();
+        return View::make('phone', ['pageTitle' => $pageTitle])->nest('phoneView', $phoneContentView, ['phone' => $phone]);
 	}
 }

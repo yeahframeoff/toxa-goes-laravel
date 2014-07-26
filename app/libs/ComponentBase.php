@@ -9,6 +9,6 @@
 abstract class ComponentBase
 {
     protected $_attrs = [];
-    abstract public function componentName();
+    abstract public function name();
     abstract public function __toString();
 }

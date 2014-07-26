@@ -18,11 +18,21 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-App::singleton('PhoneViewProvider', 'PhoneDetailedViewProvider');
+App::bind('Display', function () {return new DisplayComponent(); });
+App::bind('Battery', function () {return new BatteryComponent(); });
+App::bind('Cpu',     function () {return new CpuComponent();     });
+App::bind('Camera',  function () {return new CameraComponent();  });
 
-// app works fine without this line. Nevertheless, I added it as it is required
-App::bind('Phone', function() { return new Phone(); });
+App::bind('Phone', function()
+{
+    return new Phone([
+        App::make('Display'),
+        App::make('Battery'),
+        App::make('Cpu'),
+        App::make('Camera'),
+    ]);
+});
 
-Route::get('/phones/{id}', 'PhoneController@viewPhone');
+App::bind('PhoneContentView', function(){ return 'detailed'; });
 
-Route::get('/phone', 'PhoneController@viewDefaultPhone');
+Route::get('/phone', 'PhoneController@phone');
