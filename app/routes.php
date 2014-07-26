@@ -18,7 +18,7 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-App::singleton('PhoneViewProvider', 'PhoneTableViewProvider');
+App::singleton('PhoneViewProvider', 'PhoneDetailedViewProvider');
 
 // app works fine without this line. Nevertheless, I added it as it is required
 App::bind('Phone', function() { return new Phone(); });
