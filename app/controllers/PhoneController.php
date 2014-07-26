@@ -15,15 +15,6 @@ class PhoneController extends BaseController {
 	|
 	*/
 
-//	public function viewPhone($id = null)
-//	{
-//
-//		if (empty($id))
-//			return View::make('empty', ['url' => Request::url()]);
-//		$content = App::make('PhoneViewProvider')->make($id);
-//		return $this->render($content);
-//	}
-
 	public function phone()
 	{
 		$phone = App::make('Phone');

@@ -13,14 +13,14 @@
 			color: #999;
 		}
 
-		.info {
-			width: 1024px;
-			height: 500px;
+		.welcome {
+			width: 300px;
+			height: 200px;
 			position: absolute;
 			left: 50%;
 			top: 50%;
-			margin-left: -512px;
-			margin-top: -200px;
+			margin-left: -150px;
+			margin-top: -100px;
 		}
 
 		a, a:visited {
@@ -31,14 +31,11 @@
 			font-size: 32px;
 			margin: 16px 0 0 0;
 		}
-
-		td
-		{
-			border: 2px solid #999;
-		}
 	</style>
 </head>
 <body>
-	<div class="info">{{ $phoneView }}</div>
+	<div class="welcome">
+        <h1><a href="{{ $url }}" title="Shortend URL">Surf!</a></h1>
+	</div>
 </body>
 </html>

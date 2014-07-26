@@ -20,4 +20,12 @@ class HomeController extends BaseController {
 		return View::make('hello');
 	}
 
+    public function shorten()
+    {
+        $bitLy = App::make('BitLy');
+        $myLink = 'http://www.metrolyrics.com/survival-lyrics-eminem.html';
+        $json = $bitLy->Shorten(['longUrl' => $myLink]);
+        $url = $json['url'];
+        return View::make('shortened', ['url' => $url]);
+    }
 }
