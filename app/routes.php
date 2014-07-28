@@ -19,18 +19,9 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-//App::bind('Display', function () {return new DisplayComponent(); });
-//App::bind('Battery', function () {return new BatteryComponent(); });
-//App::bind('Cpu',     function () {return new CpuComponent();     });
-//App::bind('Camera',  function () {return new CameraComponent();  });
-
 App::bind('Phone', function()
 {
     return new Phone([
-//        App::make('Display'),
-//        App::make('Battery'),
-//        App::make('Cpu'),
-//        App::make('Camera'),
         'Display',
         'Battery',
         'Cpu',
