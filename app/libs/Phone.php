@@ -27,9 +27,12 @@ class Phone
 
     public function components() {return $this->_components; }
 
-	public function __construct($components)
+	public function __construct(array $components)
 	{
-		$this->_components = $components;
+        $cmp = array();
+        foreach ($components as $cmpName)
+            $cmp[] = App::make($cmpName.'Component');
+		$this->_components = $cmp;
 	}
 
 	public function setComponents(array $components)
